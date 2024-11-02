@@ -175,12 +175,16 @@ export const CheckoutForm = ({ createdAppointment, setCurrentStep }) => {
         <button
           type="submit"
           disabled={!stripe || !elements || processing}
-          className={`bg-primary6 w-full py-2 rounded text-white text-base font-merri font-normal mt-4`}
+          className={`bg-primary6 w-full py-2 rounded text-white text-base font-merri font-normal mt-4 gap-4`}
         >
-          Pay ${createdAppointment?.serviceId?.price}
+          {processing ? (
+            <span className="text-center ">Processing...</span>
+          ) : (
+            <span> Pay ${createdAppointment?.serviceId?.price}</span>
+          )}
         </button>
       </div>
-      {processing && <div className="text-center">Processing...</div>}
+
       {/* Show error message to your customers */}
       {errorMessage && <div>{errorMessage}</div>}
     </form>
